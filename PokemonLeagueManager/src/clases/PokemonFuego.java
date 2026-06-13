@@ -1,3 +1,5 @@
+package clases;
+
 public class PokemonFuego extends Pokemon implements Atacable {
 
     public PokemonFuego(String nombre, int nivel) {
@@ -14,7 +16,7 @@ public class PokemonFuego extends Pokemon implements Atacable {
 
         if (estaDebilitado()) {
 
-            System.out.println("Pokemon debilitado.");
+            System.out.println("clases.Pokemon debilitado.");
 
         } else if (objetivo.estaDebilitado()) {
 

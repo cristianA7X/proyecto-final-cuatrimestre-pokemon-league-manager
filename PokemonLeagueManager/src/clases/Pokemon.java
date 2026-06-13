@@ -1,3 +1,5 @@
+package clases;
+
 public abstract class Pokemon {
 
     private String nombre;
@@ -76,7 +78,7 @@ public abstract class Pokemon {
 
     public void mostrarDatos() {
         System.out.println("------------------");
-        System.out.println("Pokemon: " + nombre);
+        System.out.println("clases.Pokemon: " + nombre);
         System.out.println("Tipo: " + tipo);
         System.out.println("Nivel: " + nivel);
         System.out.println("Vida: " + vida);
