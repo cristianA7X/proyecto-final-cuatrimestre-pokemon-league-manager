@@ -16,7 +16,7 @@ public class PokemonFuego extends Pokemon implements Atacable {
 
         if (estaDebilitado()) {
 
-            System.out.println("clases.Pokemon debilitado.");
+            System.out.println("Pokemon debilitado.");
 
         } else if (objetivo.estaDebilitado()) {
 

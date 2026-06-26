@@ -18,25 +18,34 @@ public class LigaPokemon {
 
     public void agregarPokemon(Pokemon pokemon) {
 
-        //completar
+        pokemonsRegistrados.add(pokemon);
 
     }
 
     public void agregarPokemonEquipo(Pokemon pokemon) {
 
-        //completar
-
+        if (pokemonsRegistrados.contains(pokemon)) {
+            equipoDeCombate.add(pokemon);
+        } else {
+            System.out.println("Ese Pokémon no está registrado.");
+        }
     }
 
     public void agregarPocion(Pocion pocion) {
 
-        //completar
+        pocionesDisponibles.add(pocion);
 
     }
 
     public Pokemon buscarPokemon(String nombre) {
 
-        //completar
+        for (Pokemon pokemon : pokemonsRegistrados) {
+            if (pokemon.getNombre().equalsIgnoreCase(nombre)) {
+                return pokemon;
+            }else {
+                System.out.println("No hay registro de un pokemon con ese nombre.");
+            }
+        }
 
         return null;
 
@@ -44,47 +53,55 @@ public class LigaPokemon {
 
     public void mostrarPokemonsRegistrados() {
 
-        //completar
+        for (Pokemon pokemon : pokemonsRegistrados) {
+            pokemon.mostrarDatos();
+        }
 
     }
 
     public void mostrarEquipoCombate() {
 
-        //completar
+        for (Pokemon pokemon : equipoDeCombate){
+            pokemon.mostrarDatos();
+        }
 
     }
 
     public void mostrarPociones() {
 
-        //completar
+        for (Pocion pocion : pocionesDisponibles){
+            System.out.println(pocion);
+        }
 
     }
 
     public void mostrarPokemonsActivos() {
 
-        //completar
-
+        for (Pokemon pokemon : pokemonsRegistrados){
+            if(!pokemon.estaDebilitado()){
+                pokemon.mostrarDatos();
+            }
+        }
     }
 
     public void mostrarPokemonsDebilitados() {
 
-        //completar
-
+        for (Pokemon pokemon : pokemonsRegistrados){
+            if(pokemon.estaDebilitado()){
+                pokemon.mostrarDatos();
+            }
+        }
     }
 
     public int contarPokemonsRegistrados() {
 
-        //completar
-
-        return 0;
+        return pokemonsRegistrados.size();
 
     }
 
     public boolean perteneceEquipo(Pokemon pokemon) {
 
-        //completar
-
-        return false;
+        return equipoDeCombate.contains(pokemon);
 
     }
 
