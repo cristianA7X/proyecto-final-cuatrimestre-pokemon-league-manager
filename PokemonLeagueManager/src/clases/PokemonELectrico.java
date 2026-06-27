@@ -36,10 +36,6 @@ public class PokemonELectrico extends Pokemon implements Atacable, Entrenable {
         gastarEnergia(costoEnergia);
 
         System.out.println(getNombre() + " ataco correctamente.");
-
-
-
-
     }
 
     @Override

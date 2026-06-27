@@ -105,10 +105,9 @@ public class LigaPokemon {
 
     }
 
-    public void aplicarPocion() {
-
-        //completar
-
+    public void aplicarPocion(Pocion pocion, Pokemon pokemon)
+    {
+        pocion.curar(pokemon);
     }
 
 }
