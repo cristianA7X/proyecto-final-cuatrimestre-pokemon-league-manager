@@ -85,4 +85,8 @@ public abstract class Pokemon {
         System.out.println("Energia: " + energia);
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }

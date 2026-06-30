@@ -55,13 +55,14 @@ public class LigaPokemon {
     public Pokemon buscarPokemon(String nombre) {
 
         for (Pokemon pokemon : pokemonsRegistrados) {
-            if (pokemon.getNombre().equalsIgnoreCase(nombre)) {
+            if (nombre.equalsIgnoreCase(pokemon.getNombre()))
+            {
                 return pokemon;
-            }else {
-                System.out.println("No hay registro de un pokemon con ese nombre.");
             }
+
         }
 
+        System.out.println("No hay registro de un pokemon con ese nombre.");
         return null;
 
     }
@@ -124,5 +125,9 @@ public class LigaPokemon {
 
     public ArrayList<Pokemon> getPokemonsRegistrados() {
         return pokemonsRegistrados;
+    }
+
+    public ArrayList<Pocion> getPocionesDisponibles() {
+        return pocionesDisponibles;
     }
 }
