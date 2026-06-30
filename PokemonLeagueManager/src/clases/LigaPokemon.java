@@ -5,15 +5,24 @@ import java.util.ArrayList;
 public class LigaPokemon {
 
     private ArrayList<Pokemon> pokemonsRegistrados;
-    private ArrayList<Pokemon> equipoDeCombate;
+    private ArrayList<EquipoPokemon> equiposDeCombate;
     private ArrayList<Pocion> pocionesDisponibles;
+    private static LigaPokemon ligaPokemon;
 
-    public LigaPokemon() {
+    private LigaPokemon() {
 
         pokemonsRegistrados = new ArrayList<>();
-        equipoDeCombate = new ArrayList<>();
+        equiposDeCombate = new ArrayList<>();
         pocionesDisponibles = new ArrayList<>();
 
+    }
+
+    public static LigaPokemon getLigaPokemon()
+    {
+        if(ligaPokemon == null)
+            ligaPokemon = new LigaPokemon();
+
+        return ligaPokemon;
     }
 
     public void agregarPokemon(Pokemon pokemon) {
@@ -22,10 +31,16 @@ public class LigaPokemon {
 
     }
 
-    public void agregarPokemonEquipo(Pokemon pokemon) {
+    public void agregarEquipo(EquipoPokemon equipoPokemon)
+    {
+        equiposDeCombate.add(equipoPokemon);
+    }
 
-        if (pokemonsRegistrados.contains(pokemon)) {
-            equipoDeCombate.add(pokemon);
+    public void agregarPokemonEquipo(Pokemon pokemon, EquipoPokemon e)
+    {
+        if (pokemonsRegistrados.contains(pokemon))
+        {
+            e.agregarAEquipo(pokemon);
         } else {
             System.out.println("Ese Pokémon no está registrado.");
         }
@@ -59,12 +74,9 @@ public class LigaPokemon {
 
     }
 
-    public void mostrarEquipoCombate() {
-
-        for (Pokemon pokemon : equipoDeCombate){
-            pokemon.mostrarDatos();
-        }
-
+    public void mostrarEquipoCombate(EquipoPokemon equipoPokemon)
+    {
+        equipoPokemon.motrarEquipo();
     }
 
     public void mostrarPociones() {
@@ -101,7 +113,7 @@ public class LigaPokemon {
 
     public boolean perteneceEquipo(Pokemon pokemon) {
 
-        return equipoDeCombate.contains(pokemon);
+        return equiposDeCombate.contains(pokemon);
 
     }
 
@@ -110,4 +122,7 @@ public class LigaPokemon {
         pocion.curar(pokemon);
     }
 
+    public ArrayList<Pokemon> getPokemonsRegistrados() {
+        return pokemonsRegistrados;
+    }
 }
