@@ -2,10 +2,10 @@
 
 Proyecto integrador desarrollado para la materia **Desarrollo de Sistemas Orientados a Objetos** de la Tecnicatura Superior en Desarrollo de Software.
 
-## 📋 Descripción
+## Descripción
 Este proyecto es un simulador de gestión de una Liga Pokémon. Permite registrar Pokémon de distintos tipos, gestionar equipos de combate, aplicar objetos de apoyo y simular batallas interactivas (1 vs 1) contra otro jugador o contra la CPU.
 
-## 🚀 Funcionalidades Principales
+## Funcionalidades Principales
 - **Gestión de la Liga:** Registro de Pokémon y administración de objetos de apoyo.
 - **Sistema de Combate:** Simulación de combates 1 vs 1 con mecánicas de turnos.
 - **Acciones Especiales:** Implementación de interfaces para acciones como entrenar, curar y recuperar energía, respetando principios de POO.
