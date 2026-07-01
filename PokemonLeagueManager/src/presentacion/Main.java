@@ -1,7 +1,8 @@
 import clases.*;
 import java.util.Random;
 
-void main() {
+void main()
+{
     LigaPokemon liga = null;
     EquipoPokemon equipoJugador = null;
     EquipoPokemon equipoRival = null;
@@ -9,156 +10,173 @@ void main() {
 
     IO.println("=== BIENVENIDO A LA LIGA POKÉMON ===");
 
-    while (opcion != 11) {
-        IO.println("\n--- MENÚ PRINCIPAL ---");
-        IO.println("1. Crear la liga.");
-        IO.println("2. Registrar Pokemon.");
-        IO.println("3. Agregar Pokemon al equipo de combate.");
-        IO.println("4. Mostrar Pokemon registrados.");
-        IO.println("5. Mostrar equipo de combate.");
-        IO.println("6. Buscar Pokemon por nombre.");
-        IO.println("7. Realizar combate entre Pokemon del equipo.");
-        IO.println("8. Aplicar acción especial.");
-        IO.println("9. Aplicar una Pocion.");
-        IO.println("10. Mostrar Pokemon debilitados.");
-        IO.println("11. Agregar pocion.");
-        IO.println("12. Salir.");
-        opcion = Integer.parseInt(IO.readln("Elija una opción (1-11): "));
-        IO.println("*******************");
-        IO.println();
-        IO.println();
+    while (opcion != 12)
+    {
+        try
+        {
+            IO.println("\n--- MENÚ PRINCIPAL ---");
+            IO.println("1. Crear la liga.");
+            IO.println("2. Registrar Pokemon.");
+            IO.println("3. Agregar Pokemon al equipo de combate.");
+            IO.println("4. Mostrar Pokemon registrados.");
+            IO.println("5. Mostrar equipo de combate.");
+            IO.println("6. Buscar Pokemon por nombre.");
+            IO.println("7. Realizar combate entre Pokemon del equipo.");
+            IO.println("8. Aplicar acción especial.");
+            IO.println("9. Aplicar una Pocion.");
+            IO.println("10. Mostrar Pokemon debilitados.");
+            IO.println("11. Agregar pocion.");
+            IO.println("12. Salir.");
+            opcion = Integer.parseInt(IO.readln("Elija una opción (1-11): "));
+            IO.println("*******************");
+            IO.println();
+            IO.println();
 
 
-        switch (opcion) {
-            case 1:
-                if (liga == null){
-                    liga = LigaPokemon.getLigaPokemon();
-                    equipoJugador = new EquipoPokemon("Equipo Jugador 1");
-                    equipoRival = new EquipoPokemon("Equipo Rival / CPU");
-                    IO.println("¡Liga Pokémon y equipos creados con éxito!");
-                }
-                else {
-                    IO.println("La liga pokemon ya fue creada");
-                }
-                break;
-
-            case 2:
-                if (liga == null) {
-                    IO.println("Primero debes crear la liga (Opción 1).");
-                    break;
-                }
-                IO.println("¿Qué tipo de Pokémon deseas registrar?");
-                IO.println("1. Fuego \n2. Agua  \n3. Eléctrico \n4. Planta");
-                int tipo = Integer.parseInt(IO.readln("Elige el tipo: "));
-                String nombre = IO.readln("Nombre del Pokémon: ");
-                int nivel = Integer.parseInt(IO.readln("Nivel del Pokémon: "));
-
-                Pokemon nuevoPokemon = null;
-                if (tipo == 1) {
-                    nuevoPokemon = new PokemonFuego(nombre, nivel);
-                } else if (tipo == 2) {
-                    nuevoPokemon = new PokemonAgua(nombre, nivel);
-                } else if (tipo == 3) {
-                    nuevoPokemon = new PokemonELectrico(nombre, nivel);
-                } else if(tipo == 4) {
-                    nuevoPokemon = new PokemonPlanta(nombre, nivel);
-                }
-                else {
-                    IO.println("Tipo inválido. Cancelando registro.");
-                }
-
-                if (nuevoPokemon != null) {
-                    agregarPokemon(liga, nuevoPokemon);
-                    IO.println(nombre + " registrado exitosamente en la Liga.");
-                }
-                break;
-
-            case 3:
-                if (liga == null) {
-                    IO.println("Primero debes crear la liga (Opción 1).");
-                    break;
-                }
-                String nombreAg = IO.readln("Nombre del Pokémon a agregar al equipo: ");
-                Pokemon pAgregar = liga.buscarPokemon(nombreAg);
-                if (pAgregar != null) {
-                    IO.println("¿A qué equipo deseas agregarlo?");
-                    IO.println("1. Equipo Jugador 1");
-                    IO.println("2. Equipo Rival / CPU");
-                    int numEq = Integer.parseInt(IO.readln("Opción: "));
-
-                    if (numEq == 1) {
-                        liga.agregarPokemonEquipo(pAgregar, equipoJugador);
-                        IO.println("Agregado al Equipo 1.");
-                    } else if (numEq == 2) {
-                        liga.agregarPokemonEquipo(pAgregar, equipoRival);
-                        IO.println("Agregado al Equipo 2.");
+            switch (opcion) {
+                case 1:
+                    if (liga == null){
+                        liga = LigaPokemon.getLigaPokemon();
+                        equipoJugador = new EquipoPokemon("Equipo Jugador 1");
+                        equipoRival = new EquipoPokemon("Equipo Rival / CPU");
+                        IO.println("¡Liga Pokémon y equipos creados con éxito!");
                     }
-                }
-                break;
+                    else {
+                        IO.println("La liga pokemon ya fue creada");
+                    }
+                    break;
 
-            case 4:
-                if (liga != null) mostrarPokemonesRegistrados(liga);
-                else IO.println("Crea la liga primero.");
-                break;
+                case 2:
+                    try
+                    {
+                        if (liga == null)
+                        {
+                            IO.println("Primero debes crear la liga (Opción 1).");
+                            break;
+                        }
+                        IO.println("¿Qué tipo de Pokémon deseas registrar?");
+                        IO.println("1. Fuego \n2. Agua  \n3. Eléctrico \n4. Planta");
+                        int tipo = Integer.parseInt(IO.readln("Elige el tipo: "));
+                        String nombre = IO.readln("Nombre del Pokémon: ");
+                        int nivel = Integer.parseInt(IO.readln("Nivel del Pokémon: "));
 
-            case 5:
-                if (equipoJugador != null) {
-                    IO.println("\n--- EQUIPO 1 ---");
-                    mostrarEquipoDeCombate(equipoJugador);
-                    IO.println("\n--- EQUIPO RIVAL ---");
-                    mostrarEquipoDeCombate(equipoRival);
-                } else {
-                    IO.println("Crea la liga primero.");
-                }
-                break;
+                        Pokemon nuevoPokemon = null;
+                        if (tipo == 1) {
+                            nuevoPokemon = new PokemonFuego(nombre, nivel);
+                        } else if (tipo == 2) {
+                            nuevoPokemon = new PokemonAgua(nombre, nivel);
+                        } else if (tipo == 3) {
+                            nuevoPokemon = new PokemonELectrico(nombre, nivel);
+                        } else if(tipo == 4) {
+                            nuevoPokemon = new PokemonPlanta(nombre, nivel);
+                        }
+                        else {
+                            IO.println("Tipo inválido. Cancelando registro.");
+                        }
 
-            case 6:
-                if (liga != null) buscarPokemonPorNombre(liga);
-                else IO.println("Crea la liga primero.");
-                break;
+                        if (nuevoPokemon != null) {
+                            agregarPokemon(liga, nuevoPokemon);
+                            IO.println(nombre + " registrado exitosamente en la Liga.");
+                        }
+                        break;
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        System.err.println("Debes elegir un numero");
+                        IO.println();
+                    }
+                case 3:
+                    if (liga == null) {
+                        IO.println("Primero debes crear la liga (Opción 1).");
+                        break;
+                    }
+                    String nombreAg = IO.readln("Nombre del Pokémon a agregar al equipo: ");
+                    Pokemon pAgregar = liga.buscarPokemon(nombreAg);
+                    if (pAgregar != null) {
+                        IO.println("¿A qué equipo deseas agregarlo?");
+                        IO.println("1. Equipo Jugador 1");
+                        IO.println("2. Equipo Rival / CPU");
+                        int numEq = Integer.parseInt(IO.readln("Opción: "));
 
-            case 7:
-                if (liga != null && equipoJugador != null && equipoRival != null) {
-                    if (equipoJugador.equipo.isEmpty() || equipoRival.equipo.isEmpty()) {
-                        IO.println("Ambos equipos deben tener al menos un Pokémon para combatir.");
+                        if (numEq == 1) {
+                            liga.agregarPokemonEquipo(pAgregar, equipoJugador);
+                            IO.println("Agregado al Equipo 1.");
+                        } else if (numEq == 2) {
+                            liga.agregarPokemonEquipo(pAgregar, equipoRival);
+                            IO.println("Agregado al Equipo 2.");
+                        }
+                    }
+                    break;
+
+                case 4:
+                    if (liga != null) mostrarPokemonesRegistrados(liga);
+                    else IO.println("Crea la liga primero.");
+                    break;
+
+                case 5:
+                    if (equipoJugador != null) {
+                        IO.println("\n--- EQUIPO 1 ---");
+                        mostrarEquipoDeCombate(equipoJugador);
+                        IO.println("\n--- EQUIPO RIVAL ---");
+                        mostrarEquipoDeCombate(equipoRival);
                     } else {
-                        String modo = IO.readln("¿Deseas jugar contra la CPU? (1 para SÍ, 2 para jugar contra un amigo): ");
-                        boolean vsCpu = modo.equals("1");
-                        simularCombate(equipoJugador, equipoRival, vsCpu, liga); // El método grande que hicimos
+                        IO.println("Crea la liga primero.");
                     }
-                } else {
-                    IO.println("Asegúrate de crear la liga y los equipos primero.");
-                }
-                break;
+                    break;
 
-            case 8:
-                if (liga != null) aplicarAccionEspecial(liga);
-                else IO.println("Crea la liga primero.");
-                break;
+                case 6:
+                    if (liga != null) buscarPokemonPorNombre(liga);
+                    else IO.println("Crea la liga primero.");
+                    break;
 
-            case 9:
-                if (liga != null) aplicarUnaPocion(liga);
-                else IO.println("Crea la liga primero.");
-                break;
+                case 7:
+                    if (liga != null && equipoJugador != null && equipoRival != null) {
+                        if (equipoJugador.equipo.isEmpty() || equipoRival.equipo.isEmpty()) {
+                            IO.println("Ambos equipos deben tener al menos un Pokémon para combatir.");
+                        } else {
+                            String modo = IO.readln("¿Deseas jugar contra la CPU? (1 para SÍ, 2 para jugar contra un amigo): ");
+                            boolean vsCpu = modo.equals("1");
+                            simularCombate(equipoJugador, equipoRival, vsCpu, liga); // El método grande que hicimos
+                        }
+                    } else {
+                        IO.println("Asegúrate de crear la liga y los equipos primero.");
+                    }
+                    break;
 
-            case 10:
-                if (liga != null) mostrarPokemonDebilitados(liga);
-                else IO.println("Crea la liga primero.");
-                break;
+                case 8:
+                    if (liga != null) aplicarAccionEspecial(liga);
+                    else IO.println("Crea la liga primero.");
+                    break;
 
-            case 11:
-                if(liga != null)
-                    agregarPocionALiga(liga);
-                else
-                    IO.println("Crea la liga primero.");
-                break;
-            case 12:
-                IO.println("Saliendo del Pokemon League Manager... ¡Hasta la próxima!");
-                break;
+                case 9:
+                    if (liga != null) aplicarUnaPocion(liga);
+                    else IO.println("Crea la liga primero.");
+                    break;
 
-            default:
-                IO.println("Opción incorrecta. Por favor elige un número del 1 al 11.");
-                break;
+                case 10:
+                    if (liga != null) mostrarPokemonDebilitados(liga);
+                    else IO.println("Crea la liga primero.");
+                    break;
+
+                case 11:
+                    if(liga != null)
+                        agregarPocionALiga(liga);
+                    else
+                        IO.println("Crea la liga primero.");
+                    break;
+                case 12:
+                    IO.println("Saliendo del Pokemon League Manager... ¡Hasta la próxima!");
+                    break;
+
+                default:
+                    IO.println("Opción incorrecta. Por favor elige un número del 1 al 11.");
+                    break;
+            }
+        }
+        catch(NumberFormatException ex)
+        {
+            System.err.println("Debes elegir un numero");
+            IO.println("");
         }
     }
 }
@@ -211,7 +229,6 @@ Pokemon forzarCambioPokemon(EquipoPokemon equipo, boolean esCpu, String nombreJu
     IO.println("\nEl equipo de " + nombreJugador + " debe elegir un nuevo Pokémon.");
 
     if (esCpu) {
-        // La CPU elige automáticamente el primero que esté vivo
         Pokemon nuevo = obtenerPrimerPokemonVivo(equipo);
         IO.println("La CPU envía a " + nuevo.getNombre());
         return nuevo;
@@ -221,21 +238,22 @@ Pokemon forzarCambioPokemon(EquipoPokemon equipo, boolean esCpu, String nombreJu
         IO.println("Selecciona el índice del Pokémon a enviar (0 a " + (equipo.equipo.size() - 1) + "):");
         equipo.motrarEquipo();
 
-        String input = IO.readln("Índice: ");
+        try {
+            int indice = Integer.parseInt(IO.readln("Índice: "));
 
-        // Convertimos el texto a número directamente, sin try-catch
-        int indice = Integer.parseInt(input);
-
-        if (indice >= 0 && indice < equipo.equipo.size()) {
-            Pokemon seleccionado = equipo.equipo.get(indice);
-            if (!seleccionado.estaDebilitado()) {
-                IO.println("¡Ve, " + seleccionado.getNombre() + "!");
-                return seleccionado;
+            if (indice >= 0 && indice < equipo.equipo.size()) {
+                Pokemon seleccionado = equipo.equipo.get(indice);
+                if (!seleccionado.estaDebilitado()) {
+                    IO.println("¡Ve, " + seleccionado.getNombre() + "!");
+                    return seleccionado;
+                } else {
+                    IO.println("Ese Pokémon está debilitado. Elige otro.");
+                }
             } else {
-                IO.println("Ese Pokémon está debilitado. Elige otro.");
+                IO.println("Índice inválido. Por favor, elige un número de la lista.");
             }
-        } else {
-            IO.println("Índice inválido. Por favor, elige un número de la lista.");
+        } catch (NumberFormatException e) {
+            IO.println("Error: Debes ingresar un número válido.");
         }
     }
 }
@@ -278,9 +296,12 @@ void simularCombate(EquipoPokemon equipo1, EquipoPokemon equipo2, boolean vsCpu,
             IO.println("3. Usar Poción");
             IO.println("4. Cambiar Pokémon");
 
-            String input = IO.readln("Elige una acción (1-4): ");
-            // Convertimos directamente a número sin usar try-catch (asumimos que ingresan bien el dato)
-            accion = Integer.parseInt(input);
+            try {
+                accion = Integer.parseInt(IO.readln("Elige una acción (1-4): "));
+            } catch (NumberFormatException e) {
+                IO.println("Entrada no reconocida.");
+                accion = 0;
+            }
         }
 
         // Ejecutamos la acción elegida
@@ -383,17 +404,16 @@ void aplicarAccionEspecial(LigaPokemon ligaPokemon)
     }
 }
 
-void aplicarUnaPocion(LigaPokemon ligaPokemon) {
+void aplicarUnaPocion(LigaPokemon ligaPokemon)
+{
     IO.println("\n--- APLICAR UNA POCIÓN ---");
 
-    // 1. Verificamos si la Liga tiene pociones en su inventario
     var pociones = ligaPokemon.getPocionesDisponibles();
     if (pociones.isEmpty()) {
         IO.println("No hay pociones disponibles en la Liga. Debes agregar una primero.");
         return;
     }
 
-    // 2. Pedimos el Pokémon
     String nombre = IO.readln("Ingrese el nombre del Pokémon al que desea curar: ");
     Pokemon p = ligaPokemon.buscarPokemon(nombre);
 
@@ -401,28 +421,26 @@ void aplicarUnaPocion(LigaPokemon ligaPokemon) {
         if (p.estaDebilitado()) {
             IO.println(p.getNombre() + " está debilitado y no puede recibir pociones.");
         } else {
-            // 3. Mostramos las pociones disponibles
             IO.println("\nPociones disponibles:");
             for (int i = 0; i < pociones.size(); i++) {
                 Pocion pocion = pociones.get(i);
                 IO.println(i + ". " + pocion.getNombre() + " (Recupera: " + pocion.getCantRecuperacion() + " pts)");
             }
 
-            // 4. Elegimos qué poción usar por su número
-            int indice = Integer.parseInt(IO.readln("Elige el número de la poción a usar: "));
+            try {
+                int indice = Integer.parseInt(IO.readln("Elige el número de la poción a usar: "));
 
-            if (indice >= 0 && indice < pociones.size()) {
-                Pocion pocionElegida = pociones.get(indice);
-
-                // Aplicamos la poción elegida
-                ligaPokemon.aplicarPocion(pocionElegida, p);
-
-                IO.println("Se ha aplicado '" + pocionElegida.getNombre() + "' a " + p.getNombre() + ".");
-                IO.println("La vida de " + p.getNombre() + " ahora es de: " + p.getVida());
-                pociones.remove(indice);
-
-            } else {
-                IO.println("Índice inválido. Operación cancelada.");
+                if (indice >= 0 && indice < pociones.size()) {
+                    Pocion pocionElegida = pociones.get(indice);
+                    ligaPokemon.aplicarPocion(pocionElegida, p);
+                    IO.println("Se ha aplicado '" + pocionElegida.getNombre() + "' a " + p.getNombre() + ".");
+                    IO.println("La vida de " + p.getNombre() + " ahora es de: " + p.getVida());
+                    pociones.remove(indice);
+                } else {
+                    IO.println("Índice inválido. Operación cancelada.");
+                }
+            } catch (NumberFormatException e) {
+                IO.println("Error: Debes ingresar un número entero. Operación cancelada.");
             }
         }
     }
@@ -434,15 +452,18 @@ void mostrarPokemonDebilitados(LigaPokemon ligaPokemon)
     ligaPokemon.mostrarPokemonsDebilitados();
 }
 
-void agregarPocionALiga(LigaPokemon ligaPokemon) {
+void agregarPocionALiga(LigaPokemon ligaPokemon)
+{
     IO.println("\n--- AGREGAR NUEVA POCIÓN ---");
     String nombre = IO.readln("Ingrese el nombre de la poción: ");
 
-    // Convertimos directamente el texto a número
-    int recuperacion = Integer.parseInt(IO.readln("Ingrese la cantidad de vida que recupera: "));
-
-    Pocion nuevaPocion = new Pocion(nombre, recuperacion);
-    ligaPokemon.agregarPocion(nuevaPocion);
-
-    IO.println("¡Poción '" + nombre + "' agregada exitosamente al stock de la Liga!");
+    try
+    {
+        int recuperacion = Integer.parseInt(IO.readln("Ingrese la cantidad de vida que recupera: "));
+        Pocion nuevaPocion = new Pocion(nombre, recuperacion);
+        ligaPokemon.agregarPocion(nuevaPocion);
+        IO.println("¡Poción '" + nombre + "' agregada exitosamente al stock de la Liga!");
+    } catch (NumberFormatException e) {
+        IO.println("Error: La cantidad a recuperar debe ser un número entero. Operación cancelada.");
+    }
 }
